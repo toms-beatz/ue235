@@ -3,9 +3,14 @@
 {% block title %}Nouvel article{% endblock %}
 
 {% block body %}
-    <h1>Écrire un nouvel article</h1>
+    <div class="main-container d-flex flex-column">
+        <h1 class="section-title text-center">Écrire un nouvel article</h1>
+        {{ include('article/_form.html.twig') }}
 
-    {{ include('article/_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('article_index') }}">Retourner aux articles</a>
+
+
+
+
 {% endblock %}

@@ -3,11 +3,11 @@
 {% block title %}Modifier un article{% endblock %}
 
 {% block body %}
-    <h1>Modifier un article</h1>
+    <div class="main-container d-flex flex-column">
+        <h1 class="section-title text-center">Modifier un article</h1>
+        {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <div class="delete-button align-self-center">{{ include('article/_delete_form.html.twig') }}</div>
+    </div>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('article_index') }}">Retourner aux articles</a>
-
-    {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,41 +3,32 @@
 {% block title %}Liste des articles{% endblock %}
 
 {% block body %}
-    <h1>Articles</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Catégorie</th>
-                <th>Contenu</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
+    <div class="main-container d-flex flex-column">
+
+        <h1 class="section-title">Articles</h1>
+
         {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>
-                    {% if article.Category.name is defined %}
-                        {{ article.Category.name }}
-                    {% endif %}
-                </td>
-                <td>{{ article.content }}</td>
-                <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">Lire la suite...</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Aucun article trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('article_new') }}">Écrire un nouvel article</a>
+            <section class="article d-flex flex-column">
+                <h2 class="article-title">{{ article.title }}</h2>
+
+                <p class="article-content">{{ article.content }}</p>
+
+                <div class="actions d-flex">
+                    <button class="btn btn-primary"><a href="{{ path('article_show', {'id': article.id}) }}">Lire la suite...</a></button>
+                    <button class="btn btn-primary"><a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a></button>
+                </div>
+            </section>
+
+        {% else %}
+
+            <p>Aucun article trouvé</p>
+
+        {% endfor %}
+
+        <a class="new-article" href="{{ path('article_new') }}">Écrire un nouvel article</a>
+
+    </div>
 {% endblock %}

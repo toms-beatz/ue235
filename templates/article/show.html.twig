@@ -3,36 +3,21 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <h1>{{ article.title }}</h1>
+    <div class="main-container d-flex flex-column">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>Catégorie</th>
-                <td>
-                    {% if article.Category.name is defined %}
-                        {{ article.Category.name }}
-                    {% endif %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <section class="article d-flex flex-column">
+            <h2 class="article-title">{{ article.title }}</h2>
 
-    <a href="{{ path('article_index') }}">Retourner aux articles</a>
+            <p class="article-content">{{ article.content }}</p>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier l'article</a>
+            <div class="actions d-flex">
+                <button class="btn btn-primary"><a href="{{ path('article_index') }}">Retourner aux articles</a></button>
+                <button class="btn btn-primary"><a href="{{ path('article_edit', {'id': article.id}) }}">Modifier l'article</a></button>
+                {{ include('article/_delete_form.html.twig') }}
+            </div>
+        </section>
 
-    {{ include('article/_delete_form.html.twig') }}
+    </div>
+
+
 {% endblock %}
